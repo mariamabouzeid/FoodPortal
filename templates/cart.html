@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <a class="navbar-brand" style="color:white;">
+            <img src="img/logo.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            The Restaurant
+        </a>
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/menu">Menu</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#/complaints">Complaints</a>
+            </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right ml-auto my-2 my-lg-0">
+            <li class="nav-item">
+                <a class="nav-link my-2 my-sm-0" href="#/home" role="button"style="color: #DCDCDC;">Sign Out</a>
+            </li>
+        </ul>
+
+    </div>
+</nav>
+
+<div class="container-fluid container" style="margin-top: 20px;">
+
+    <div class="row">
+        <div class="col-7" style="background-color: white; margin-right: 60px; margin-bottom: 20px;">
+            <ul class="list-group list-group-flush" style="padding: 20px;">
+                <li class="list-group-item">
+                    <img src="img/burger.jpg" height="80px" width="80px" style="display: inline;">
+                    <h4 style="display: inline;"><strong>Cheese Burger</strong></h4>
+                    <small style="float: right;">$15.00</small>
+                    <ul class="list-group list-group-flush" style="padding: 20px;">
+                        <li class="list-group-item">
+                            Grilled beef burger with pickles, lettuce, tomato and mayonnaise.
+                        </li>
+                        <li class="list-group-item">
+                            Size: Small
+                        </li>
+                    </ul>
+                </li>
+                <li class="list-group-item">
+                    <img src="img/pizza.jpg" height="80px" width="80px" style="display: inline;">
+                    <h4 style="display: inline;"><strong>Pepperoni Pizza</strong></h4>
+                    <small style="float: right;">$18.00</small>
+                    <ul class="list-group list-group-flush" style="padding: 20px;">
+                        <li class="list-group-item">
+                            Thin crust pizza with pepperoni, mozzarella and tomato sauce.
+                        </li>
+                        <li class="list-group-item">
+                            Size: Small
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div>
+                <p style="padding: 10px; float: right; background-color: #DCDCDC;">Total: $33.00</p>
+            </div>
+        </div>
+
+        <div class="col-4" style="background-color: white; height: 400px;">
+            <div>
+                <label style="font-size: x-large; margin-top: 10px;">  <strong>Order Information</strong></label>
+            </div>
+            <ul class="list-group list-group-flush" style="padding: 20px;">
+                <li class="list-group-item">
+                    <label class="containerRadio">Delivery
+                        <input type="radio" checked="checked" name="radio1">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label style="margin-left: 10px;">Your order will be delivered to your address</label>
+                </li>
+                <li class="list-group-item">
+                    <label class="containerRadio">As Soon As Possible
+                        <input type="radio" checked="checked" name="radio2">
+                        <span class="checkmark"></span>
+                    </label>
+                    <label style="margin-left: 10px;">Estimated delivery time is 45 min.</label>
+                </li>
+            </ul>
+            <a type="button" href="#/checkout" class="btn btn-primary btn-block" style="margin-bottom: 20px;">Checkout</a>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<ul>
+    <li>
+        <label><input type="radio" name="list" value="volvo">Volvo</label>
+        <button>delete</button>
+    </li>
+    <li>
+        <label><input type="radio" name="list" value="saab">Saab</label>
+        <button>delete</button>
+    </li>
+    <li>
+        <label><input type="radio" name="list" value="mercedes">Mercedes</label>
+        <button>delete</button>
+    </li>
+    <li>
+        <label><input type="radio" name="list" value="mercedes">Mercedes</label>
+        <button>delete</button>
+    </li>
+</ul>
+
+<script>
+    $("ul").on("click", "button", function(e) {
+        e.preventDefault();
+        $(this).parent().remove();
+    });
+</script>
