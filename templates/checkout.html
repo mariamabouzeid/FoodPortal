@@ -2,6 +2,7 @@
 <html lang="en" ng-app="app">
 
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,23 +16,56 @@
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" ui-sref="home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/menu">Menu</a>
+                <a class="nav-link" ui-sref="menu">Menu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/complaints">Complaints</a>
+                <a class="nav-link" ui-sref="complaints">Complaints</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right ml-auto my-2 my-lg-0">
+
             <li class="nav-item">
-                <a class="nav-link my-2 my-sm-0" href="#/home" role="button"style="color: #DCDCDC;">Sign Out</a>
+                <a class="nav-link my-2 my-sm-0" ui-sref="cart({obj: cartItems})" role="button" style="color: #DCDCDC;" ng-click="sendCart()">
+                    Cart  <span class="badge badge-primary badge-pill" style="display: inline;" ng-model="cnt">{{cnt}}</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link my-2 my-sm-0" ui-sref="home" role="button"style="color: #DCDCDC;">Sign Out</a>
             </li>
         </ul>
-
     </div>
 </nav>
-<h1>Inside Checkout!</h1>
+
+<div class="container-fluid container" style="margin-top: 20px; align-items: center;">
+
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-7" style="background-color: white; margin-right: 60px; margin-bottom: 20px;">
+            <ul class="list-group" style="padding: 20px;">
+                <li class="list-group-item list-group-item-success" style="text-align: center;">Your Order is on its way!</li>
+            </ul>
+            <ul class="list-group list-group-flush" style="padding: 20px;">
+                <li class="list-group-item" ng-repeat="finalObj in purchased">
+                    <img src={{finalObj.item.img}} height="80px" width="80px" style="display: inline;">
+                    <h4 style="display: inline;"><strong>{{finalObj.item.name}}</strong></h4>
+                    <small style="float: right;">${{finalObj.item.price}}.00</small>
+                    <ul class="list-group list-group-flush" style="padding: 20px;">
+                        <li class="list-group-item">
+                            {{finalObj.item.description}}
+                        </li>
+                        <li class="list-group-item">
+                            {{finalObj.size}}
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <div>
+                <p style="padding: 10px; width: 100%; background-color: #DCDCDC; text-align: center;">Total: ${{getTotal()}}.00</p>
+            </div>
+        </div>
+    </div>
+</div>
 </body>
 </html>

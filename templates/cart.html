@@ -2,6 +2,7 @@
 <html lang="en" ng-app="app">
 
 <body>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
@@ -15,58 +16,91 @@
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" ui-sref="home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/menu">Menu</a>
+                <a class="nav-link" ui-sref="menu">Menu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/complaints">Complaints</a>
+                <a class="nav-link" ui-sref="complaints">Complaints</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right ml-auto my-2 my-lg-0">
             <li class="nav-item">
-                <a class="nav-link my-2 my-sm-0" href="#/home" role="button"style="color: #DCDCDC;">Sign Out</a>
+                <a data-toggle="dropdown" ng-if="!logged" class="nav-link dropdown-toggle my-2 my-sm-0" href="#" target="_self">Login</a>
+                <ul class="dropdown-menu dropdown-menu-right form-wrapper"style="background-color:rgba(255,255,255,.8);">
+                    <li>
+                        <form method="post" style="margin: 20px 20px 20px 20px;">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Username" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" required="required">
+                            </div>
+                            <input type="submit" ng-click="logged = true" class="btn btn-primary btn-block" value="Login">
+                        </form>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a href="#" ng-if="!logged" target="_self" data-toggle="dropdown" class="btn btn-primary dropdown-toggle get-started-btn my-2 my-sm-0">Sign up</a>
+                <ul class="dropdown-menu dropdown-menu-right form-wrapper" style="background-color:rgba(255,255,255,.8);">
+                    <li>
+                        <form method="post" style="margin: 20px 20px 20px 20px;">
+                            <p class="hint-text">Fill in this form to create your account!</p>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Username" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" class="form-control" placeholder="Password" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="number" class="form-control" placeholder="Phone Number" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Address" required="required">
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Another Address(Optional)" required="required">
+                            </div>
+                            <div class="form-group">
+                                <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms &amp; Conditions</a></label>
+                            </div>
+                            <input type="submit" ng-click="logged = true" class="btn btn-primary btn-block" value="Sign up">
+                        </form>
+                    </li>
+                </ul>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link my-2 my-sm-0" ui-sref="home" role="button"style="color: #DCDCDC;">Sign Out</a>
             </li>
         </ul>
-
     </div>
 </nav>
+
 
 <div class="container-fluid container" style="margin-top: 20px;">
 
     <div class="row">
         <div class="col-7" style="background-color: white; margin-right: 60px; margin-bottom: 20px;">
             <ul class="list-group list-group-flush" style="padding: 20px;">
-                <li class="list-group-item">
-                    <img src="img/burger.jpg" height="80px" width="80px" style="display: inline;">
-                    <h4 style="display: inline;"><strong>Cheese Burger</strong></h4>
-                    <small style="float: right;">$15.00</small>
+                <li class="list-group-item" ng-repeat="foodObject in listItems">
+                    <img src={{foodObject.item.img}} height="80px" width="80px" style="display: inline;">
+                    <h4 style="display: inline;"><strong>{{foodObject.item.name}}</strong></h4>
+                    <small style="float: right;">${{foodObject.item.price}}.00</small>
                     <ul class="list-group list-group-flush" style="padding: 20px;">
                         <li class="list-group-item">
-                            Grilled beef burger with pickles, lettuce, tomato and mayonnaise.
+                            {{foodObject.item.description}}
                         </li>
                         <li class="list-group-item">
-                            Size: Small
+                            {{foodObject.size}}
                         </li>
                     </ul>
-                </li>
-                <li class="list-group-item">
-                    <img src="img/pizza.jpg" height="80px" width="80px" style="display: inline;">
-                    <h4 style="display: inline;"><strong>Pepperoni Pizza</strong></h4>
-                    <small style="float: right;">$18.00</small>
-                    <ul class="list-group list-group-flush" style="padding: 20px;">
-                        <li class="list-group-item">
-                            Thin crust pizza with pepperoni, mozzarella and tomato sauce.
-                        </li>
-                        <li class="list-group-item">
-                            Size: Small
-                        </li>
-                    </ul>
+                    <button class="btn btn-primary" ng-click="remove(foodObject)">Remove</button>
                 </li>
             </ul>
             <div>
-                <p style="padding: 10px; float: right; background-color: #DCDCDC;">Total: $33.00</p>
+                <p style="padding: 10px; float: right; background-color: #DCDCDC;">Total: ${{getTotal()}}.00</p>
             </div>
         </div>
 
@@ -90,9 +124,10 @@
                     <label style="margin-left: 10px;">Estimated delivery time is 45 min.</label>
                 </li>
             </ul>
-            <a type="button" href="#/checkout" class="btn btn-primary btn-block" style="margin-bottom: 20px;">Checkout</a>
+            <a type="button" ui-sref="checkout({final: listItems})" class="btn btn-primary btn-block" style="margin-bottom: 20px;">Checkout</a>
         </div>
     </div>
 </div>
+
 </body>
 </html>

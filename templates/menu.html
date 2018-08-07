@@ -16,157 +16,45 @@
         </a>
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
             <li class="nav-item active">
-                <a class="nav-link" href="#/home">Home <span class="sr-only">(current)</span></a>
+                <a class="nav-link" ui-sref="home">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/menu">Menu</a>
+                <a class="nav-link" ui-sref="menu">Menu</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#/complaints">Complaints</a>
+                <a class="nav-link" ui-sref="complaints">Complaints</a>
             </li>
         </ul>
         <ul class="nav navbar-nav navbar-right ml-auto my-2 my-lg-0">
+
             <li class="nav-item">
-                <a class="nav-link my-2 my-sm-0" href="#/cart" role="button" style="color: #DCDCDC;">
+                <a class="nav-link my-2 my-sm-0" ui-sref="cart({items: cartItems})" role="button" style="color: #DCDCDC;" ng-click="sendCart()">
                     Cart  <span class="badge badge-primary badge-pill" style="display: inline;" ng-model="cnt">{{cnt}}</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link my-2 my-sm-0" href="#/home" role="button"style="color: #DCDCDC;">Sign Out</a>
+                <a class="nav-link my-2 my-sm-0" ui-sref="home" role="button"style="color: #DCDCDC;">Sign Out</a>
             </li>
         </ul>
-
     </div>
 </nav>
 
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;">
-    <img class="card-img-top" src="img/pizza.jpg" alt="burger" style="height: 191px;">
+<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;"  ng-repeat="item in items">
+    <img class="card-img-top" src="{{item.img}}" alt="pizza" style="height: 191px;">
     <div class="card-body">
-        <h5 class="card-title" style="display: inline;">Pepperoni Pizza</h5>
-        <h5 class="card-title" style="display: inline; float: right;">$18.00</h5>
-        <p class="card-text">Thin crust pizza with pepperoni, mozzarella and tomato sauce.</p>
+        <h5 class="card-title" style="display: inline;">{{item.name}}</h5>
+        <h5 class="card-title" style="display: inline; float: right;">${{item.price}}.00</h5>
+        <p class="card-text">{{item.description}}</p>
         <div class="form-group">
-            <select ng-model="item1" class="form-control" id="select1" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
+            <select ng-model="itemx" class="form-control" id="select1" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
                 <option value="" selected disabled>Please select</option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
+                <option>{{item.size[0]}}</option>
+                <option>{{item.size[1]}}</option>
+                <option>{{item.size[2]}}</option>
             </select>
-            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="cnt = cnt + 1" ng-disabled="!item1">Add to Cart</button>
+            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="addToCart(item, itemx)" ng-disabled="!itemx">Add to Cart</button>
         </div>
     </div>
 </div>
-
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;">
-    <img class="card-img-top" src="img/burger.jpg" alt="burger" style="height: 191px;">
-    <div class="card-body">
-        <h5 class="card-title" style="display: inline;">Cheese Burger</h5>
-        <h5 class="card-title" style="display: inline; float: right;">$15.00</h5>
-        <p class="card-text">Grilled beef burger with pickles, lettuce, tomato and mayonnaise.</p>
-        <div class="form-group">
-            <select ng-model="item2" class="form-control" id="select2" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
-                <option value="" selected disabled>Please select</option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-            </select>
-            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="cnt = cnt + 1" ng-disabled="!item2">Add to Cart</button>
-        </div>
-    </div>
-</div>
-
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;">
-    <img class="card-img-top" src="img/mozSticks.jpg" alt="burger" style="height: 217px;">
-    <div class="card-body">
-        <h5 class="card-title" style="display: inline;">Mozzarella Sticks</h5>
-        <h5 class="card-title" style="display: inline; float: right;">$7.00</h5>
-        <p class="card-text">6 Fingers of mozzarella sticks served with dipping.</p>
-        <div class="form-group">
-            <select ng-model="item3" class="form-control" id="select3" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
-                <option value="" selected disabled>Please select</option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-            </select>
-            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="cnt = cnt + 1" ng-disabled="!item3">Add to Cart</button>
-        </div>
-    </div>
-</div>
-
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;">
-    <img class="card-img-top" src="img/salmon.jpg" alt="burger" style="height: 217px;;">
-    <div class="card-body">
-        <h5 class="card-title" style="display: inline;">Salmon Steak</h5>
-        <h5 class="card-title" style="display: inline; float: right;">$21.00</h5>
-        <p class="card-text">Thick slice of salmon steak served with vegetables.</p>
-        <div class="form-group">
-            <select ng-model="item4" class="form-control" id="select4" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
-                <option value="" selected disabled>Please select</option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-            </select>
-            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="cnt = cnt + 1" ng-disabled="!item4">Add to Cart</button>
-        </div>
-    </div>
-</div>
-
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;">
-    <img class="card-img-top" src="img/pancakes.jpg" alt="burger" style="height: 217px;">
-    <div class="card-body">
-        <h5 class="card-title" style="display: inline;">PanCakes</h5>
-        <h5 class="card-title" style="display: inline; float: right;">$5.00</h5>
-        <p class="card-text">Freshly baked pancakes with honey, banana and nuts.</p>
-        <div class="form-group">
-            <select ng-model="item5" class="form-control" id="select5" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
-                <option value="" selected disabled>Please select</option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-            </select>
-            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="cnt = cnt + 1" ng-disabled="!item5">Add to Cart</button>
-        </div>
-    </div>
-</div>
-
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;">
-    <img class="card-img-top" src="img/cola.jpg" alt="burger" style="height: 217px;">
-    <div class="card-body">
-        <h5 class="card-title" style="display: inline;">Soft Drinks</h5>
-        <h5 class="card-title" style="display: inline; float: right;">$2.00</h5>
-        <p class="card-text">Choose from Diet Coke, Fanta, Mountain Dew or Sprit.</p>
-        <div class="form-group">
-            <select ng-model="item6" class="form-control" id="select6" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
-                <option value="" selected disabled>Please select</option>
-                <option>Small</option>
-                <option>Medium</option>
-                <option>Large</option>
-            </select>
-            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="cnt = cnt + 1" ng-disabled="!item6">Add to Cart</button>
-        </div>
-    </div>
-</div>
-
-<div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;">
-    <img class="card-img-top" src="img/lemonade.jpg" alt="burger" style="height: 217px;">
-    <div class="card-body">
-        <h5 class="card-title" style="display: inline;">Lemonade</h5>
-        <h5 class="card-title" style="display: inline; float: right;">$3.00</h5>
-        <p class="card-text">Refreshing Cold Lemonade with ice cubes.</p>
-        <div class="form-group">
-            <form>
-                <select ng-model="item7" class="form-control" id="select7" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
-                    <option value="" selected disabled>Please select</option>
-                    <option value="small">Small</option>
-                    <option value="medium">Medium</option>
-                    <option value="large">Large</option>
-                </select>
-                <input type="submit" class="btn btn-primary" value="Add to Cart" ng-disabled="!item7"
-                       style="float: right; margin-bottom: 20px;" ng-click="cnt = cnt + 1">
-            </form>
-        </div>
-    </div>
-</div>
-
 
 </body>
 </html>

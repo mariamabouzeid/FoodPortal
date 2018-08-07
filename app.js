@@ -2,46 +2,49 @@
  * Created by Mariam on 27-Jul-18.
  */
 
-var app = angular.module('app', ['ngRoute'])
-    .config(function($routeProvider){
-        $routeProvider.when('/',
+var app = angular.module('app', ['ui.router'])
+    .config(function($stateProvider, $urlRouterProvider){
+        $urlRouterProvider.otherwise('/');
+
+        $stateProvider.state('home',
             {
+                url: '/',
                 templateUrl: 'templates/home.html',
                 controller: 'HomeController'
-            });
-        $routeProvider.when('/cart',
+            })
+            .state('cart',
             {
+                url: '/cart',
                 templateUrl: 'templates/cart.html',
-                controller: 'CartController'
-            });
-        $routeProvider.when('/checkout',
+                controller: 'CartController',
+                params: {
+                    items: null
+                }
+            })
+            .state('checkout',
             {
+                url: '/checkout',
                 templateUrl: 'templates/checkout.html',
-                controller: 'CheckoutController'
-            });
-        $routeProvider.when('/complaints',
+                controller: 'CheckController',
+                params: {
+                    final: null
+                }
+            })
+            .state('complaints',
             {
+                url: '/complaints',
                 templateUrl: 'templates/complaints.html',
                 controller: 'ComplaintsController'
-            });
-        $routeProvider.when('/login',
+            })
+            .state('menu',
             {
-                templateUrl: 'templates/login.html',
-                controller: 'LoginController'
-            });
-        $routeProvider.when('/menu',
-            {
+                url: '/menu',
                 templateUrl: 'templates/menu.html',
                 controller: 'MenuController'
             });
-        $routeProvider.when('/registration',
-            {
-                templateUrl: 'templates/registration.html',
-                controller: 'RegistrationController'
-            });
-        $routeProvider.otherwise({redirectTo: '/'});
     });
 
+/*
 app.config(function($locationProvider) {
 
     $locationProvider.hashPrefix('');
@@ -49,4 +52,4 @@ app.config(function($locationProvider) {
         enabled: false,
         requireBase: true
     })
-});
+});*/

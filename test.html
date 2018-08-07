@@ -1,25 +1,22 @@
-<ul>
-    <li>
-        <label><input type="radio" name="list" value="volvo">Volvo</label>
-        <button>delete</button>
-    </li>
-    <li>
-        <label><input type="radio" name="list" value="saab">Saab</label>
-        <button>delete</button>
-    </li>
-    <li>
-        <label><input type="radio" name="list" value="mercedes">Mercedes</label>
-        <button>delete</button>
-    </li>
-    <li>
-        <label><input type="radio" name="list" value="mercedes">Mercedes</label>
-        <button>delete</button>
-    </li>
-</ul>
+<!DOCTYPE html>
+<html>
+<body>
+
+<!-- Note that the <li> elements inside <ul> are not indented (whitespaces).
+If they were, the first child node of <ul> would be a text node
+-->
 
 <script>
-    $("ul").on("click", "button", function(e) {
-        e.preventDefault();
-        $(this).parent().remove();
-    });
+    entry.setAttribute('id','item'+lastid);
+    var removeButton = document.createElement('button');
+    removeButton.appendChild(document.createTextNode("remove"));
+    removeButton.setAttribute('onClick','removeName("'+'item'+lastid+'")');
+    entry.appendChild(removeButton);
+    function removeName(itemid){
+        var item = document.getElementById(itemid);
+        list.removeChild(item);
+    }
 </script>
+
+</body>
+</html>
