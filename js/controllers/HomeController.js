@@ -47,6 +47,11 @@ app.controller('HomeController', function($scope, $http, $base64, $rootScope) {
 
     };
 
+    $scope.signOut = function () {
+        $scope.notLogged = true;
+        $scope.logged = false;
+    };
+
     $scope.signUpInfo = function(username, password, phoneNumber, address1, address2){
         $scope.userSignUpInfo.userName = username;
         $scope.userSignUpInfo.password = password;
