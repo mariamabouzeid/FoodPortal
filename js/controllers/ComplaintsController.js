@@ -19,7 +19,8 @@ app.controller('ComplaintsController', function($scope, $http, $base64, $rootSco
         var auth = $base64.encode($rootScope.globalUsername + ":" + $rootScope.globalPassword);
         var headers = {"Authorization": "Basic " + auth};
 
-        $http.post("http://localhost:8880/foodportal/secured/complaints", JSON.stringify($scope.complaint), {headers: headers}).then(function (response) {
+        $http.post("http://localhost:8880/foodportal/secured/complaints", JSON.stringify($scope.complaint), {headers: headers})
+            .then(function (response) {
 
             if (response.data)
                 $scope.msg = "Post Data Submitted Successfully!";

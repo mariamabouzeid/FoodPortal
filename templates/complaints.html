@@ -39,16 +39,37 @@
         <form>
             <div class="form-group">
                 <label for="inputSubject">Subject</label>
-                <textarea class="form-control" ng-model="subject" id="inputSubject" placeholder="Enter Subject.." required/>
+                <textarea class="form-control" ng-model="subject" id="inputSubject" placeholder="Enter Subject.." required
+                          maxlength="50"/>
             </div>
             <div class="form-group">
                 <label for="inputMessage">Message</label>
-                <textarea class="form-control" ng-model="message" id="inputMessage" placeholder="Enter Message.." required/>
+                <textarea class="form-control" ng-model="message" id="inputMessage" placeholder="Enter Message.." required
+                          maxlength="300"/>
             </div>
-            <button type="submit" class="btn btn-primary" ng-click="addComplaint(subject, message)">Submit</button>
+            <button type="submit" class="btn btn-primary" ng-click="addComplaint(subject, message)"
+                    data-toggle="modal" data-target="#exampleModal">Submit</button>
         </form>
     </div>
-
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel" style="text-align: center;">Complaints & Suggestions</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Your Complaint/Suggestion has been sent!
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 </body>

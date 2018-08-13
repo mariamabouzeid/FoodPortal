@@ -6,7 +6,7 @@
 app.controller('CartController', function($scope, $state, $stateParams, $http, $base64, $rootScope) {
 
     console.log("inside the controller");
-     $scope.listItems = $stateParams.items;
+    $scope.listItems = $stateParams.items;
     console.log($scope.listItems);
 
     $scope.getTotal = function () {
@@ -19,7 +19,6 @@ app.controller('CartController', function($scope, $state, $stateParams, $http, $
 
     $scope.remove = function(foodObject){
         $scope.listItems = $scope.listItems.filter(function(el) { return el.item.name != foodObject.item.name; });
-        //console.log($scope.listItems);
     }
 
     $scope.sendCheckout = function () {
@@ -55,7 +54,8 @@ app.controller('CartController', function($scope, $state, $stateParams, $http, $
         var headers = {"Authorization": "Basic " + auth};
 
 
-        $http.post("http://localhost:8880/foodportal/secured/checkout", JSON.stringify($scope.orderData), {headers: headers}).then(function (response) {
+        $http.post("http://localhost:8880/foodportal/secured/checkout", JSON.stringify($scope.orderData), {headers: headers})
+            .then(function (response) {
 
             if (response.data)
                 $scope.msg = "Post Data Submitted Successfully!";

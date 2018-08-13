@@ -48,19 +48,24 @@
                         <form method="post" style="margin: 20px 20px 20px 20px;">
                             <p class="hint-text">Fill in this form to create your account!</p>
                             <div class="form-group">
-                                <input ng-model="username" type="text" class="form-control" placeholder="Username" required="required">
+                                <input ng-model="username" type="text" class="form-control" placeholder="Username" required="required"
+                                       maxlength="50">
                             </div>
                             <div class="form-group">
-                                <input ng-model="password" type="password" class="form-control" placeholder="Password" required="required">
+                                <input ng-model="password" type="password" class="form-control" placeholder="Password" required="required"
+                                       maxlength="50">
                             </div>
                             <div class="form-group">
-                                <input ng-model="phoneNumber" type="number" class="form-control" placeholder="Phone Number" required="required">
+                                <input ng-model="phoneNumber" type="number" class="form-control" placeholder="Phone Number" required="required"
+                                       maxlength="20">
                             </div>
                             <div class="form-group">
-                                <input ng-model="address1" type="text" class="form-control" placeholder="Address" required="required">
+                                <input ng-model="address1" type="text" class="form-control" placeholder="Address" required="required"
+                                       maxlength="250">
                             </div>
                             <div class="form-group">
-                                <input ng-model="address2" type="text" class="form-control" placeholder="Another Address(Optional)">
+                                <input ng-model="address2" type="text" class="form-control" placeholder="Another Address(Optional)"
+                                       maxlength="250">
                             </div>
                             <div class="form-group">
                                 <label class="checkbox-inline"><input type="checkbox" required="required"> I accept the <a href="#">Terms &amp; Conditions</a></label>
