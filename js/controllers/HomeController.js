@@ -42,7 +42,7 @@ app.controller('HomeController', function($scope, $http, $base64, $rootScope) {
             $scope.logged = true;
             console.log($rootScope.id);
         }, function Error(response) {
-            $scope.items = response.statusText;
+            window.alert("Wrong Username or Password!");
         })
 
     };
