@@ -6,7 +6,6 @@
 app.controller('CheckController', function($scope, $stateParams) {
 
     $scope.purchased = $stateParams.final;
-    console.log($scope.purchased);
 
     $scope.getTotal = function () {
         var sum = 0;

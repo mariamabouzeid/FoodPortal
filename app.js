@@ -2,7 +2,7 @@
  * Created by Mariam on 27-Jul-18.
  */
 
-var app = angular.module('app', ['ui.router'])
+var app = angular.module('app', ['ui.router', 'base64'])
     .config(function($stateProvider, $urlRouterProvider){
         $urlRouterProvider.otherwise('/');
 
@@ -43,13 +43,3 @@ var app = angular.module('app', ['ui.router'])
                 controller: 'MenuController'
             });
     });
-
-/*
-app.config(function($locationProvider) {
-
-    $locationProvider.hashPrefix('');
-    $locationProvider.html5Mode({
-        enabled: false,
-        requireBase: true
-    })
-});*/

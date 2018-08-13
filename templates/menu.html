@@ -39,21 +39,24 @@
 </nav>
 
 <div class="card text-white bg-dark mb-3" style="max-width: 18rem; display: inline-block; margin: 20px 20px 20px 20px;"  ng-repeat="item in items">
-    <img class="card-img-top" src="{{item.img}}" alt="pizza" style="height: 191px;">
-    <div class="card-body">
+    <img class="card-img-top" src={{item.img}} alt="pizza" style="height: 191px;">
+    <form class="card-body">
         <h5 class="card-title" style="display: inline;">{{item.name}}</h5>
         <h5 class="card-title" style="display: inline; float: right;">${{item.price}}.00</h5>
         <p class="card-text">{{item.description}}</p>
-        <div class="form-group">
+        <form>
             <select ng-model="itemx" class="form-control" id="select1" style="display: inline; width: 120px; float: left; margin-bottom: 20px;" required>
-                <option value="" selected disabled>Please select</option>
-                <option>{{item.size[0]}}</option>
-                <option>{{item.size[1]}}</option>
-                <option>{{item.size[2]}}</option>
+                <option value=""  selected="selected" disabled>Please select</option>
+                <option>{{item.sizes[0].name}}</option>
+                <option>{{item.sizes[1].name}}</option>
+                <option>{{item.sizes[2].name}}</option>
             </select>
-            <button class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="addToCart(item, itemx)" ng-disabled="!itemx">Add to Cart</button>
-        </div>
-    </div>
+            <button type="reset" class="btn btn-primary" style="float: right; margin-bottom: 20px;" ng-click="addToCart(item, itemx)" ng-disabled="!itemx">
+                Add To Cart
+            </button>
+        </form>
+
+    </form>
 </div>
 
 </body>

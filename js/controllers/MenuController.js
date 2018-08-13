@@ -3,66 +3,25 @@
  */
 'use strict';
 
-app.controller('MenuController', function($scope, $state) {
+app.controller('MenuController', function($scope, $state, $http, $base64, $rootScope) {
 
-    $scope.items = [
-        {
-            id: 1,
-            name: "Pepperoni Pizza",
-            size: ["Small", "Medium","Large"],
-            price: 18,
-            description: "Thin crust pizza with pepperoni, mozzarella and tomato sauce.",
-            img: 'img/pizza.jpg'
-        },
-        {
-            id: 2,
-            name: "Cheese Burger",
-            size: ["Small", "Medium", "Large"],
-            price: 15,
-            description: "Grilled beef burger with pickles, lettuce, tomato and mayonnaise.",
-            img: 'img/burger.jpg'
-        },
-        {
-            id: 3,
-            name: "Mozzarella Sticks",
-            size: ["Small", "Medium", "Large"],
-            price: 7,
-            description: "6 Fingers of mozzarella sticks served with dipping.",
-            img: 'img/mozSticks.jpg'
-        },
-        {
-            id: 4,
-            name: "Salmon Steak",
-            size: ["Small", "Medium", "Large"],
-            price: 21,
-            description: "Thick slice of salmon steak served with vegetables.",
-            img: 'img/salmon.jpg'
-        },
-        {
-            id:5,
-            name: "Pancakes",
-            size: ["Small", "Medium", "Large"],
-            price: 5,
-            description: "Freshly baked pancakes with honey, banana and nuts.",
-            img: 'img/pancakes.jpg'
-        },
-        {
-            id: 6,
-            name: "Soft Drinks",
-            size: ["Small", "Medium", "Large"],
-            price: 2,
-            description: "Choose from Diet Coke, Fanta, Mountain Dew or Sprit.",
-            img: 'img/cola.jpg'
-        },
-        {
-            id: 7,
-            name: "Lemonade",
-            size: ["Small", "Medium", "Large"],
-            price: 3,
-            description: "Refreshing Cold Lemonade with ice cubes.",
-            img: 'img/lemonade.jpg'
+
+    $scope.auth = $base64.encode( $rootScope.globalUsername + ":" +  $rootScope.globalPassword);
+    console.log( $rootScope.globalUsername);
+    console.log( $rootScope.globalPassword);
+    console.log($scope.auth);
+    $http({
+        method : "GET",
+        url : "http://localhost:8880/foodportal/secured/menu",
+        headers: {
+            "Authorization": "Basic " + $scope.auth
         }
-    ];
+    }).then(function Success(response) {
+        $scope.items = response.data;
+        console.log($scope.items);
+    }, function Error(response) {
+        $scope.items = response.statusText;
+    });
 
     $scope.selectedItem = {};
     $scope.selectedSize = {};
@@ -80,22 +39,19 @@ app.controller('MenuController', function($scope, $state) {
         $scope.selectedObj.item = $scope.selectedItem;
         $scope.selectedObj.size = $scope.selectedSize;
 
+        console.log($scope.selectedObj);
+
         $scope.cartItems.push($scope.selectedObj);
 
         $scope.selectedObj = {};
 
         $scope.cnt += 1;
 
-        //
-        // $scope.selectedItem = {};
-        // $scope.selectedSize = {};
-        //console.log($scope.cartItems);
-        //console.log($scope.cnt);
     }
 
     $scope.sendCart = function () {
 
-        $state.go('cart', {items:$scope.cartItems});
+        $state.go('cart', {items: $scope.cartItems});
     }
 
 });

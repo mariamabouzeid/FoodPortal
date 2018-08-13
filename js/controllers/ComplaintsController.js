@@ -3,17 +3,33 @@
  */
 'use strict';
 
-app.controller('ComplaintsController', function($scope) {
+app.controller('ComplaintsController', function($scope, $http, $base64, $rootScope) {
 
-    $scope.complaints = [];
+    $scope.complaint = {};
 
     $scope.addComplaint = function(sbjt, mesg){
-        var temp = {
+        $scope.complaint = {
             subject: sbjt,
-            message: mesg
+            message: mesg,
+            userId: $rootScope.id
         }
-        $scope.complaints.push(temp);
 
-        console.log($scope.complaints)
+        console.log($scope.complaint);
+
+        var auth = $base64.encode($rootScope.globalUsername + ":" + $rootScope.globalPassword);
+        var headers = {"Authorization": "Basic " + auth};
+
+        $http.post("http://localhost:8880/foodportal/secured/complaints", JSON.stringify($scope.complaint), {headers: headers}).then(function (response) {
+
+            if (response.data)
+                $scope.msg = "Post Data Submitted Successfully!";
+
+        }, function (response) {
+
+            $scope.statusval = response.status;
+            $scope.statustext = response.statusText;
+            $scope.headers = response.headers();
+
+        });
     }
 });
