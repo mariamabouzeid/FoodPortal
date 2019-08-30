@@ -7,9 +7,7 @@ app.controller('MenuController', function($scope, $state, $http, $base64, $rootS
 
 
     $scope.auth = $base64.encode( $rootScope.globalUsername + ":" +  $rootScope.globalPassword);
-    console.log( $rootScope.globalUsername);
-    console.log( $rootScope.globalPassword);
-    console.log($scope.auth);
+
     $http({
         method : "GET",
         url : "http://localhost:8880/foodportal/secured/menu",
